@@ -17,7 +17,7 @@ class HistorySimulation extends Simulation {
 
   // 2 Feeder (random account + cacheBuster)
   val accountsFeeder = Iterator.continually {
-    val acct = accounts(Random.nextInt(accounts.length))
+    val acct = accounts(ThreadLocalRandom.current().nextInt(accounts.length)
     Map(
       "accountId" -> acct,
       "cb" -> Instant.now.toEpochMilli.toString
@@ -39,14 +39,8 @@ class HistorySimulation extends Simulation {
         .get("/accounts/${accountId}/transactions?cb=${cb}")
         .check(status.is(200))
       .check(jsonPath("$[0].id").exists)
-      .check(bodyString.saveAs("resp"))
     )
     .pause(1)
-    .exec { session =>
-      if (System.getProperty("gatling.debug") == "true") {
-        println("RESP: " + session("resp").asOption[String].getOrElse("<no body>"))
-      }
-      session
     }
 
   // 4 Load Scenario - Injection profile (closed model)
