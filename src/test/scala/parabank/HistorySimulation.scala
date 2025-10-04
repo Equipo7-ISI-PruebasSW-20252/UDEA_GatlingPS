@@ -41,7 +41,6 @@ class HistorySimulation extends Simulation {
       .check(jsonPath("$[0].id").exists)
     )
     .pause(1)
-    }
 
   // 4 Load Scenario - Injection profile (closed model)
   val injectionProfile = Seq(
