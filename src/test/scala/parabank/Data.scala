@@ -17,7 +17,13 @@ object Data{
       "13344",
       "54321"
     )
+    //RequestLoan
+    val fromAccountId = "12456"
+    val customerId = "12212"
+    val amount = "5000"
+    val downPayment = "500"
 }
+
 
 
 
