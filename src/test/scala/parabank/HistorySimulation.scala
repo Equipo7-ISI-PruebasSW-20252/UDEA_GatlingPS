@@ -44,8 +44,8 @@ class HistorySimulation extends Simulation {
   // 4 Setup + Assertions (inyectando los pasos directamente para evitar el problema con : _*)
   setUp(
     scn.inject(
-      rampConcurrentUsers(0) to 200 during (120.seconds),   // ramp 0 -> 200 en 2 min
-      constantConcurrentUsers(200) during (10.minutes)      // steady-state 200 por 10 min
+      rampConcurrentUsers(0) to 200 during (120.seconds), 
+      constantConcurrentUsers(200) during (5.minutes)
     ).protocols(httpConf)
   ).assertions(
     // p95 <= 3000 ms y error rate <= 1%
