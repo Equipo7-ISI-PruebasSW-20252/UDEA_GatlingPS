@@ -4,20 +4,21 @@ object Data{
     val url= "https://parabank.parasoft.com/parabank/services/bank"
     val username = "john"
     val password = "demo"
-    val accounts = Array(
+    val accounts: Array[String] = Array(
+      "12345",
+      "12456",
+      "12567",
+      "12678",
+      "12789",
+      "12900",
+      "13011",
+      "13122",
+      "13233",
       "13344",
-      "52194",
-      "52305",
-      "52416",
-      "52527",
-      "52638",
-      "52749",
-      "52860",
-      "52971",
-      "53082",
-      "53193"
+      "54321"
     )
 }
+
 
 
 
