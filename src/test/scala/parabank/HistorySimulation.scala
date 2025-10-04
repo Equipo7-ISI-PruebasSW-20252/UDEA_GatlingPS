@@ -37,7 +37,7 @@ class HistorySimulation extends Simulation {
       http("GetAccountHistory")
         .get("/accounts/${accountId}/transactions?cb=${cb}")
         .check(status.is(200))
-        .check(jsonPath("$[0].id")).optional.saveAs("firstTxnId"))
+        .check(jsonPath("$[0].id").optional.saveAs("firstTxnId"))
     )
     .pause(1)
 
