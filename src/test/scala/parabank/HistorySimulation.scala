@@ -30,14 +30,14 @@ class HistorySimulation extends Simulation {
       http("login")
         .get(s"/login/$username/$password")
         .check(status.is(200))
-    )
+    ).exitHereIfFailed
     .pause(1)
     .feed(accountsFeeder)
     .exec(
       http("GetAccountHistory")
         .get("/accounts/${accountId}/transactions?cb=${cb}")
         .check(status.is(200))
-        .check(jsonPath("$[0].id").exists)
+        .check(jsonPath("$[0].id")).optional.saveAs("firstTxnId"))
     )
     .pause(1)
 
