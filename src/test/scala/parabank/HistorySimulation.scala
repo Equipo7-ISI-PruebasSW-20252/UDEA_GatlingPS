@@ -41,16 +41,14 @@ class HistorySimulation extends Simulation {
     )
     .pause(1)
 
-  // 4 Load Scenario - Injection profile (closed model)
-  val injectionProfile = Seq(
-    rampConcurrentUsers(0) to 200 during (120.seconds),
-    constantConcurrentUsers(200) during (10.minutes)  
-  )
-
-  // 5 Setup + Assertions
+  // 4 Setup + Assertions (inyectando los pasos directamente para evitar el problema con : _*)
   setUp(
-    scn.inject(injectionProfile: _*).protocols(httpConf)
+    scn.inject(
+      rampConcurrentUsers(0) to 200 during (120.seconds),   // ramp 0 -> 200 en 2 min
+      constantConcurrentUsers(200) during (10.minutes)      // steady-state 200 por 10 min
+    ).protocols(httpConf)
   ).assertions(
+    // p95 <= 3000 ms y error rate <= 1%
     details("GetAccountHistory").responseTime.percentile(95).lte(3000),
     global.failedRequests.percent.lte(1)
   )
