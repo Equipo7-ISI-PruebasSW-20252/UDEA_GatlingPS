@@ -5,7 +5,7 @@ import io.gatling.http.Predef._
 import scala.concurrent.duration._
 import parabank.Data._
 
-/*class RequestLoan extends Simulation {
+class RequestLoan extends Simulation {
 
   // 1. HTTP configuration (base URL)
   val httpConf = http
@@ -37,4 +37,3 @@ import parabank.Data._
       global.successfulRequests.percent.gte(98)    
     )
 }
-*/
