@@ -37,22 +37,10 @@ class BillPaySimulation extends Simulation {
         ))
         
         .check(status.is(200))
+        .check(jsonPath("$.payeeName").is("${payeeName}"))
+        .check(jsonPath("$.accountId").is("${accountId}"))
+        .check(jsonPath("$.amount").ofType[Double])
     )
-    .exec { session =>
-      val status = session("httpStatus").as[Int]
-      val accountId = session("accountId").as[String]
-      val amount = session("amount").as[String]
-      val response = session("responseBody").asOption[String].getOrElse("No response")
-      
-      // Log detallado para CADA request
-      /*println(s"=== BILL PAYMENT REQUEST ===")
-      println(s"Account: $accountId, Amount: $amount")
-      println(s"Status: $status")
-      println(s"Response: $response")
-      println("============================")*/
-
-      session
-    }
 
   val injectionProfile = Seq(
     rampConcurrentUsers(0) to 200 during (120.seconds),
