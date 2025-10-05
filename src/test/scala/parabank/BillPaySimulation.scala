@@ -12,11 +12,11 @@ class BillPaySimulation extends Simulation {
     .acceptHeader("application/json")
     .contentTypeHeader("application/json")
 
-  val feeder = csv("billpay-data.csv").circular  // ✅ Nombre corregido
+  val feeder = csv("billpay-data.csv").circular
 
   val scn = scenario("BillPayUnderLoad")
     .feed(feeder)
-    .pause(1.second)  // ✅ Pausa entre requests
+    .pause(1.second)  
     .exec(
       http("Bill Payment")
         .post("/billpay")
@@ -35,9 +35,8 @@ class BillPaySimulation extends Simulation {
             "accountNumber": "${payeeAccountNumber}"
           }"""
         ))
-        // ✅ SOLO verificaciones que no fallen
-        .check(status.saveAs("httpStatus"))
-        .check(bodyString.saveAs("responseBody"))
+        
+        .check(status.is(200))
     )
     .exec { session =>
       val status = session("httpStatus").as[Int]
@@ -55,7 +54,6 @@ class BillPaySimulation extends Simulation {
       session
     }
 
-  // ✅ 200 USUARIOS CONCURRENTES 
   val injectionProfile = Seq(
     rampConcurrentUsers(0) to 200 during (120.seconds),
     constantConcurrentUsers(200) during (2.minutes)
