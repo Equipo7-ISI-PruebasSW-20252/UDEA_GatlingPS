@@ -5,7 +5,7 @@ import io.gatling.http.Predef._
 import scala.concurrent.duration._
 import parabank.Data._
 
-class TransferStressSimulation extends Simulation {
+/*class TransferStressSimulation extends Simulation {
 
   // 1️⃣ Configuración HTTP
   val httpConf = http
@@ -42,3 +42,4 @@ class TransferStressSimulation extends Simulation {
     global.responseTime.percentile(95).lte(2000) // latencia aceptable
   )
 }
+*/

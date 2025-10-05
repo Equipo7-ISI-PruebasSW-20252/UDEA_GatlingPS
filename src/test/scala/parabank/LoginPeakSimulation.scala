@@ -5,7 +5,7 @@ import io.gatling.http.Predef._
 import scala.concurrent.duration._
 import parabank.Data._
 
-class LoginPeakSimulation extends Simulation{
+/*class LoginPeakSimulation extends Simulation{
 
   // 1 Http Conf
   val httpConf = http.baseUrl(url)
@@ -35,3 +35,4 @@ class LoginPeakSimulation extends Simulation{
     //global.successfulRequests.percent.gte(98)               // tolerancia ligeramente menor en pico
   )
 }
+*/

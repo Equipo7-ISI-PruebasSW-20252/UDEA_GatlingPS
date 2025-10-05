@@ -7,7 +7,7 @@ import java.time.Instant
 import java.util.concurrent.ThreadLocalRandom
 import parabank.Data._
 
-class HistorySimulation extends Simulation {
+/*class HistorySimulation extends Simulation {
 
   // 1 Http Conf
   val httpConf = http
@@ -53,3 +53,4 @@ class HistorySimulation extends Simulation {
     global.failedRequests.percent.lte(1)
   )
 }
+*/

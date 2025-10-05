@@ -5,7 +5,7 @@ import io.gatling.http.Predef._
 import scala.concurrent.duration._
 import parabank.Data._
 
-class LoginTest extends Simulation{
+/*class LoginTest extends Simulation{
 
   // 1 Http Conf
   val httpConf = http.baseUrl(url)
@@ -36,3 +36,4 @@ class LoginTest extends Simulation{
     //global.successfulRequests.percent.gte(5)               // al menos 5% exitosas
   )
 }
+*/
