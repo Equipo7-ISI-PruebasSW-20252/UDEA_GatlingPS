@@ -29,7 +29,7 @@ class LoginTest extends Simulation{
   )
 
   setUp(
-    scn.inject(injectionProfile).protocols(httpConf)
+    scn.inject(injectionProfile).protocols(httpConf) 
   ).assertions(
     // Assertions enfocadas en el criterio CA01
     details("login").responseTime.percentile(95).lte(2000), // p95 <= 2000 ms
